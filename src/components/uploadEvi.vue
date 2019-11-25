@@ -20,8 +20,8 @@
             <ul>
                 <li class="pic-box" v-for="(item2,index2) in item.picList">
                     <img class="pic-content" :src="item2.src" alt="">
-                    <span class="del" v-if="!item2.status">上传中...</span>
-                    <span class="del" @click="del(index,index2,item2.proofUrlId)" v-if="item2.status">删除</span>
+                    <!-- <span class="del" v-if="!item2.status">上传中...</span> -->
+                    <span class="del" @click="del(index,index2,item2.proofUrlId)">删除</span>
                 </li>
                 <li class="add" @click="choice(index)" v-show="item.picList.length < 9">
                     <img class="pic-content" src="@/images/addIcon.png" alt="">
@@ -78,7 +78,6 @@ export default {
         this.roomId = id.split('-')[0];
         this.recordId = id.split('-')[1];
         console.log(this.roomId,this.recordId);
-        // this.init()
     },
     created(){
         
@@ -149,9 +148,17 @@ export default {
                     this.$dialog.confirm({
                         title: '提交成功',
                         mes: res.data.message,
-                        opts: () => {
-                            WeixinJSBridge.invoke('closeWindow',{},function(res){});
-                        }
+                        opts:
+                        [
+                            {
+                                txt: '确定',
+                                color: true,
+                                callback: () => {
+                                    console.log(111);
+                                    WeixinJSBridge.invoke('closeWindow',{},function(res){});
+                                }
+                            }
+                        ]
                     });
                 }else if(res.data.state == 101){
                     this.$dialog.alert({mes: res.data.message});

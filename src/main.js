@@ -35,7 +35,7 @@ Vue.use(BaiduMap, {
 
 // pdf
 
-eruda.init() // eruda初始化
+// eruda.init() // eruda初始化
 
 Vue.config.productionTip = false
 
