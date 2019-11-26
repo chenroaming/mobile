@@ -391,7 +391,7 @@
   .cont {
     display: inline-block;
     vertical-align: middle;
-
+    touch-action: none;
   }
 
   .cont button {

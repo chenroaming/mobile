@@ -148,17 +148,14 @@ export default {
                     this.$dialog.confirm({
                         title: '提交成功',
                         mes: res.data.message,
-                        opts:
-                        [
-                            {
+                        opts:[{
                                 txt: '确定',
                                 color: true,
                                 callback: () => {
                                     console.log(111);
                                     WeixinJSBridge.invoke('closeWindow',{},function(res){});
                                 }
-                            }
-                        ]
+                            }]
                     });
                 }else if(res.data.state == 101){
                     this.$dialog.alert({mes: res.data.message});
