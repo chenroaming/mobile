@@ -21,7 +21,7 @@
                 <li class="pic-box" v-for="(item2,index2) in item.picList">
                     <img class="pic-content" :src="item2.src" alt="">
                     <!-- <span class="del" >等待确认上传</span> -->
-                    <div class="loadEffect" v-if="!item2.status">
+                    <div class="loadEffect">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -113,16 +113,14 @@ export default {
                     console.log('not support!');
                 }
                 fileReader.onloadend = function () {
-                    if (fileReader.readyState == fileReader.DONE) {
-                        const src = {
-                            src:fileReader.result,
-                            status:false,
-                            proofUrlId:'',
-                        }
-                        that.eviList[index].picList.push(src);
-                        // that.$set(that.eviList[index].picList[that.eviList[index].picList.length-1],'status',false);
-                        // console.log(that.eviList[index].picList);
-                    }
+                    // if (fileReader.readyState == fileReader.DONE) {
+                    //     const src = {
+                    //         src:fileReader.result,
+                    //         status:false,
+                    //         proofUrlId:'',
+                    //     }
+                    //     that.eviList[index].picList.push(src);
+                    // }
                     upfile(file,that.recordId).then(res => {
                         if(res.data.state == 100){
                             that.eviList[index].urlIds.push(res.data.proofUrlId);
@@ -131,10 +129,7 @@ export default {
                                 status:true,
                                 proofUrlId:res.data.proofUrlId
                             }
-                            that.eviList[index].picList.pop();
                             that.eviList[index].picList.push(src);
-                            // that.$set(that.eviList[index].picList[that.eviList[index].picList.length-1],'status',true);
-                            // console.log(that.eviList[index].picList);                            
                         }else if(res.data.state == 101){
                             that.$dialog.alert({mes: res.data.message});
                         }
@@ -142,6 +137,9 @@ export default {
                         that.$dialog.alert({mes: '网络错误！请刷新重试！'});
                     })
                 };
+                fileReader.onload = function () {
+                    console.log(file);
+                }
                 fileReader.readAsDataURL(file);
             }
         },
@@ -536,4 +534,4 @@ export default {
             left: 14px;
             -webkit-animation-delay:1.04s;
         }
-</style>
+</style>    

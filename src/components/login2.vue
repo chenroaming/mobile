@@ -1,6 +1,5 @@
 <template>
-    <div class="loading">loading.......</div>
-    <!-- <yd-tab active-color="#40a9ff">
+    <yd-tab active-color="#40a9ff">
         <yd-tab-panel label="当事人" style="margin-top: 20px;">
           <div style="margin: 0.35rem">
             <yd-cell-group>
@@ -41,7 +40,7 @@
             <yd-button @click.native="loginSubmit(1)" shape="circle" size="large" bgcolor="#40a9ff" color="#FFF">登&nbsp;录</yd-button>
           </div>
         </yd-tab-panel>
-    </yd-tab> -->
+    </yd-tab>
 </template>
 
 <script type="text/babel">
@@ -154,9 +153,5 @@ export default {
   font-size: 0.4rem;
   height: 0.9rem;
   margin-top: 0.8rem;
-}
-.loading {
-    font-size: 18px;
-    text-align: left;
 }
 </style>

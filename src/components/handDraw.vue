@@ -339,14 +339,17 @@
           postText(this.dataURL,this.roomId,this.pantId,this.judgeId,this.judicialId,this.recordId)
             .then(res => {
               if (res.data.state == 100) {
-                this.$dialog.toast({
-                  mes: '提交成功',
-                  icon: 'success',
-                  timeout: 1500
-                })
-                this.$router.push({
-                    name:'handDrawSuccess'
-                })
+                this.$dialog.confirm({
+                  title: '提交成功',
+                  mes: res.data.message,
+                  opts:[{
+                    txt: '确定',
+                    color: true,
+                    callback: () => {
+                      WeixinJSBridge.invoke('closeWindow',{},function(res){});
+                    }
+                  }]
+                });
               } else if(res.data.state == 101) {
                 this.$dialog.toast({
                   mes: '提交失败，' + res.data.message,
