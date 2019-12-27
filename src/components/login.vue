@@ -62,7 +62,7 @@ export default {
     
   },
   created() {
-    window.location.href = 'https://mediate.ptnetwork001.com/tartctest/';
+    // window.location.href = 'https://mediate.ptnetwork001.com/tartctest/';
     const lawCaseId = Util.GetStrParam("lawCaseId", this.$store.getters.toPath);
     this.lawCaseId = lawCaseId;
     console.log(lawCaseId);

@@ -177,7 +177,6 @@
     save() {
       console.log(canvas.toDataURL("image/png"))
       return canvas.toDataURL("image/png")
-
     }
 
   }
@@ -316,7 +315,7 @@
             // logging: true,//日志
             // allowTaint:true,//允许加载跨域的图片
           }).then((canvas) => {
-            let dataURL = canvas.toDataURL("image/jpg");
+            let dataURL = canvas.toDataURL("image/png");
             console.log(dataURL);
             that.dataURL = dataURL;
           });
